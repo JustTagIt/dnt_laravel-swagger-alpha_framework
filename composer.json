@@ -1,0 +1,25 @@
+{
+    "name": "domandtom/laravel-swagger",
+    "description": "",
+    "authors": [
+        {
+            "name": "Mauricio Lopez",
+            "email": "mauricio@domandtom.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "zircote/swagger-php": "master-dev"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/controllers"
+        ],
+        "psr-0": {
+            "Domandtom\\LaravelSwagger": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
