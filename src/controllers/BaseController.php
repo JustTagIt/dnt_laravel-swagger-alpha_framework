@@ -21,9 +21,9 @@ class BaseController extends Controller
     {
         $path = Config::get('laravel-swagger::discoverPath');
         $swagger = Swagger::discover($path);
-        $json = $swagger->getResourceList(true);
+        $resourceList = $swagger->getResourceList(true);
 
-        return $json;
+        return $resourceList;
     }
 
     public function showResource($service)
@@ -36,8 +36,8 @@ class BaseController extends Controller
             App::abort(404, 'Service not found');
         }
 
-        $json = $swagger->getResource($resourceName, Config::get('laravel-swagger::prettyPrint'));
+        $resource = $swagger->getResource($resourceName, Config::get('laravel-swagger::prettyPrint'));
 
-        return $json;
+        return $resource;
     }
 }
