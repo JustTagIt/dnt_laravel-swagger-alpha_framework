@@ -26,9 +26,13 @@ class BaseController extends Controller
      */
     public function resources()
     {
-        $path = Config::get('laravel-swagger::discoverPath');
-        $swagger = new Swagger($path);
-        $resourceList = $swagger->getResourceList();
+        $paths = Config::get('laravel-swagger::paths');
+        $excludedPath = Config::get('laravel-swagger::excludePath');
+        $options = Config::get('laravel-swagger::getResourceListOptions');
+
+        $swagger = new Swagger($paths, $excludedPath);
+
+        $resourceList = $swagger->getResourceList($options);
 
         return $resourceList;
     }
@@ -38,15 +42,18 @@ class BaseController extends Controller
      */
     public function showResource($name)
     {
-        $path = Config::get('laravel-swagger::discoverPath');
-        $swagger = new Swagger($path);
+        $paths = Config::get('laravel-swagger::paths');
+        $excludedPath = Config::get('laravel-swagger::excludePath');
+        $options = Config::get('laravel-swagger::getResourceOptions');
+
+        $swagger = new Swagger($paths, $excludedPath);
 
         $resourceName = "/" . str_replace("-", "/", $name);
         if (!in_array($resourceName, $swagger->getResourceNames())) {
-            App::abort(404, 'Service not found');
+            App::abort(404, 'Resource not found');
         }
 
-        $resource = $swagger->getResource($resourceName);
+        $resource = $swagger->getResource($resourceName, $options);
 
         return $resource;
     }

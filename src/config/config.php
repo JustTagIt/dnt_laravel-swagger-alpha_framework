@@ -1,7 +1,13 @@
 <?php
 
 return array(
-    'discoverPath' => app_path().'/controllers',
+    'paths' => array(
+        app_path().'/controllers',
+        app_path().'/models'
+    ),
+    'excludePath' => array(),
+    'getResourceListOptions' => array(),
+    'getResourceOptions' => array(),
     'routing' => array(
         'prefix' => '/api/docs'
     ),
