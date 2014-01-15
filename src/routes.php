@@ -1,7 +1,7 @@
 <?php
 
-Route::get('/api/docs', 'Domandtom\LaravelSwagger\BaseController@index');
+Route::get('/api/docs', 'DomAndTom\LaravelSwagger\BaseController@index');
 
-Route::get('/api', 'Domandtom\LaravelSwagger\BaseController@resources');
+Route::get('/api', 'DomAndTom\LaravelSwagger\BaseController@resources');
 
-Route::get('/api/resources/{service}.json', 'Domandtom\LaravelSwagger\BaseController@showResource');
+Route::get('/api/resources/{service}.json', 'DomAndTom\LaravelSwagger\BaseController@showResource');
