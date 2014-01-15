@@ -1,6 +1,6 @@
 <?php 
 
-namespace Domandtom\LaravelSwagger;
+namespace DomAndTom\LaravelSwagger;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -42,7 +42,7 @@ class LaravelSwaggerServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('swagger');
+		return array();
 	}
 
 }

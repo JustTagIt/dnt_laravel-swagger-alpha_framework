@@ -1,6 +1,6 @@
 <?php
 
-namespace Domandtom\LaravelSwagger;
+namespace DomAndTom\LaravelSwagger;
 
 use App;
 use Config;
