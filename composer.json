@@ -1,10 +1,13 @@
 {
     "name": "domandtom/laravel-swagger",
-    "description": "",
+    "type": "Laravel Package",
+    "description": "Integate zircote/php-swagger into Laravel 4 Projects",
     "authors": [
         {
             "name": "Mauricio Lopez",
             "email": "mauricio@domandtom.com"
+            "homepage": "http://www.domandtom.com/",
+            "role": "Developer"
         }
     ],
     "require": {
