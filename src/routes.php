@@ -1,7 +1,13 @@
 <?php
 
-Route::get('/api/docs', 'DomAndTom\LaravelSwagger\BaseController@index');
+Route::group(Config::get('laravel-swagger::routing'), function()
+{
+    // Swagger UI index
+    Route::get('/', array('as' => 'swagger-index', 'uses' => 'DomAndTom\LaravelSwagger\BaseController@index'));
 
-Route::get('/api', 'DomAndTom\LaravelSwagger\BaseController@resources');
+    // Show available Resources
+    Route::get('resources', array('as' => 'swagger-resources', 'uses' => 'DomAndTom\LaravelSwagger\BaseController@resources'));
 
-Route::get('/api/resources/{service}.json', 'DomAndTom\LaravelSwagger\BaseController@showResource');
+    // Show Resource
+    Route::get('resources/{name}', 'DomAndTom\LaravelSwagger\BaseController@showResource');
+});
