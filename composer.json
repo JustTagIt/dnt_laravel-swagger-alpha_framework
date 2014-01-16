@@ -18,7 +18,9 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/controllers"
+            "src/models",
+            "src/controllers",
+            "src/controllers/demo"
         ],
         "psr-0": {
             "DomAndTom\\LaravelSwagger": "src/"

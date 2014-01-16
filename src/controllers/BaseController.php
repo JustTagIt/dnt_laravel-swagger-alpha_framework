@@ -27,6 +27,11 @@ class BaseController extends Controller
     public function resources()
     {
         $paths = Config::get('laravel-swagger::paths');
+
+        if (Config::get('laravel-swagger::showDemo') ) {
+            $paths[] = __DIR__.'/demo';
+        }
+        
         $excludedPath = Config::get('laravel-swagger::excludePath');
         $options = Config::get('laravel-swagger::getResourceListOptions');
 
@@ -43,6 +48,11 @@ class BaseController extends Controller
     public function showResource($name)
     {
         $paths = Config::get('laravel-swagger::paths');
+
+        if (Config::get('laravel-swagger::showDemo') ) {
+            $paths[] = __DIR__.'/demo';
+        }
+
         $excludedPath = Config::get('laravel-swagger::excludePath');
         $options = Config::get('laravel-swagger::getResourceOptions');
 
@@ -51,6 +61,10 @@ class BaseController extends Controller
         $resourceName = "/" . str_replace("-", "/", $name);
         if (!in_array($resourceName, $swagger->getResourceNames())) {
             App::abort(404, 'Resource not found');
+        }
+
+        if ($resourceName == '/pet') {
+            $options['defaultBasePath'] = route('swagger-index');
         }
 
         $resource = $swagger->getResource($resourceName, $options);

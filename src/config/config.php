@@ -10,7 +10,6 @@ return array(
     'getResourceOptions' => array(
         'defaultBasePath' => ''
     ),
-    'routing' => array(
-        'prefix' => '/api/docs'
-    ),
+    'prefix' => '/api/docs',
+    'showDemo' => true
 );
