@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Swagger UI</title>
+  <title>PHP Swagger</title>
   <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
   <link href='{{ URL::asset('packages/domandtom/laravel-swagger/css/highlight.default.css') }}' media='screen' rel='stylesheet' type='text/css'/>
   <link href='{{ URL::asset('packages/domandtom/laravel-swagger/css/screen.css') }}' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='{{ URL::asset('packages/domandtom/laravel-swagger/css/laravel-swagger.css') }}' media='screen' rel='stylesheet' type='text/css'/>
   <script type="text/javascript" src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/shred.bundle.js') }}" /></script>
   <script type="text/javascript" src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery-1.8.0.min.js') }}" /></script>
   <script type="text/javascript" src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery.slideto.min.js') }}" /></script>
@@ -55,15 +56,9 @@
 <body>
 <div id='header'>
   <div class="swagger-ui-wrap">
-    <a id="logo" href="{{ URL::route('swagger-index') }}">swagger</a>
+    <a id="logo" href="{{ URL::route('swagger-index') }}">PHP Swagger</a>
 
     <form id='api_selector'>
-      <div class='input icon-btn'>
-        <img id="show-pet-store-icon" src="{{ URL::asset('packages/domandtom/laravel-swagger/images/pet_store_api.png') }}" title="Show Swagger Petstore Example Apis">
-      </div>
-      <div class='input icon-btn'>
-        <img id="show-wordnik-dev-icon" src="{{ URL::asset('packages/domandtom/laravel-swagger/images/wordnik_api.png') }}" title="Show Wordnik Developer Apis">
-      </div>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
       <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
       <div class='input'><a id="explore" href="#">Explore</a></div>
