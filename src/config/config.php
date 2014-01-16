@@ -7,7 +7,9 @@ return array(
     ),
     'excludePath' => array(),
     'getResourceListOptions' => array(),
-    'getResourceOptions' => array(),
+    'getResourceOptions' => array(
+        'defaultBasePath' => ''
+    ),
     'routing' => array(
         'prefix' => '/api/docs'
     ),
