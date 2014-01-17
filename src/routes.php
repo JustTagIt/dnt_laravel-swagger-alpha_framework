@@ -17,8 +17,8 @@ Route::group($routingPrefix, function()
 
     // Demo PetController Routes
     if (Config::get('laravel-swagger::showDemo') ) {
-        Route::get('/pet/{petId}', 'DomAndTom\LaravelSwagger\PetController@getPetById');
-        Route::get('/pet/findByStatus', 'DomAndTom\LaravelSwagger\PetController@findByStatus');
-        Route::get('/pet/findByTags', 'DomAndTom\LaravelSwagger\PetController@findPetsByTags');
+        Route::get('/petdemo/findByStatus', 'DomAndTom\LaravelSwagger\PetController@findByStatus');
+        Route::get('/petdemo/findByTags', 'DomAndTom\LaravelSwagger\PetController@findPetsByTags');
+        Route::get('/petdemo/{petId}', 'DomAndTom\LaravelSwagger\PetController@getPetById');
     }
 });

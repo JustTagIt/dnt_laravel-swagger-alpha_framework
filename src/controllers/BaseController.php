@@ -12,7 +12,7 @@ use Swagger\Swagger;
 class BaseController extends Controller
 {
     /**
-     * Show Swagger UI 
+     * Swagger UI 
      */
     public function index()
     {
@@ -63,7 +63,8 @@ class BaseController extends Controller
             App::abort(404, 'Resource not found');
         }
 
-        if ($resourceName == '/pet') {
+        // Pet demo uses the main laravel-swagger route.
+        if ($resourceName == '/petdemo') {
             $options['defaultBasePath'] = route('swagger-index');
         }
 

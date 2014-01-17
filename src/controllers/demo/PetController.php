@@ -5,24 +5,24 @@ namespace DomAndTom\LaravelSwagger;
 use App;
 use Config;
 use URL;
+use Response;
 use Illuminate\Routing\Controllers\Controller;
 use Illuminate\Support\Facades\View;
-use Swagger\Swagger;
 
 /**
  * @SWG\Resource(
  *   apiVersion="1.0.0",
  *   swaggerVersion="1.2",
- *   resourcePath="/pet",
+ *   resourcePath="/petdemo",
  *   description="Operations about pets",
- *   produces="['application/json','application/xml','text/plain','text/html']"
+ *   produces="['application/json']"
  * )
  */
 class PetController extends Controller
 {
     /**
      * @SWG\Api(
-     *   path="/pet/{petId}",
+     *   path="/petdemo/{petId}",
      *   @SWG\Operation(
      *     method="GET",
      *     summary="Find pet by ID",
@@ -44,14 +44,24 @@ class PetController extends Controller
      *   )
      * )
      */
-    public function getPetById()
+    public function getPetById($petId)
     {
-        return "ok";
+        if (!is_numeric($petId)) {
+            $response = Response::json(array('code' => 400, 'message' => 'Invalid ID supplied'), 400);
+        } elseif ($petId != 3) {
+            $response = Response::json(array('code' => 404, 'message' => 'Pet not found'), 404);
+        } else {
+            $response = Response::make(Pet::getPet3(), 200);
+        }
+
+        $response->header('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
      * @SWG\Api(
-     *   path="/pet/findByStatus",
+     *   path="/petdemo/findByStatus",
      *   @SWG\Operation(
      *     method="GET",
      *     summary="Finds Pets by status",
@@ -74,11 +84,15 @@ class PetController extends Controller
      */
     function findByStatus() 
     {
-        return "ok";
+        $response = Response::make(Pet::getPets(), 200);
+        $response->header('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
-     * @SWG\Api(path="/pet/findByTags",
+     * @SWG\Api(
+     *   path="/petdemo/findByTags",
      *   @SWG\Operation(
      *     method="GET",
      *     summary="Finds Pets by tags",
@@ -100,6 +114,9 @@ class PetController extends Controller
      */
     function findPetsByTags() 
     {
-        return "ok";
+        $response = Response::make(Pet::getPets(), 200);
+        $response->header('Content-Type', 'application/json');
+
+        return $response;
     }
 }
