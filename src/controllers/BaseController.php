@@ -30,6 +30,7 @@ class BaseController extends Controller
 
         if (Config::get('laravel-swagger::showDemo') ) {
             $paths[] = __DIR__.'/demo';
+            $paths[] = __DIR__.'/../models';
         }
         
         $excludedPath = Config::get('laravel-swagger::excludePath');
@@ -51,6 +52,7 @@ class BaseController extends Controller
 
         if (Config::get('laravel-swagger::showDemo') ) {
             $paths[] = __DIR__.'/demo';
+            $paths[] = __DIR__.'/../models';
         }
 
         $excludedPath = Config::get('laravel-swagger::excludePath');
