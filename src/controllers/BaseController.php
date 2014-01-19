@@ -5,7 +5,7 @@ namespace DomAndTom\LaravelSwagger;
 use App;
 use Config;
 use URL;
-use Illuminate\Routing\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Swagger\Swagger;
 

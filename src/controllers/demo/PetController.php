@@ -6,7 +6,7 @@ use App;
 use Config;
 use URL;
 use Response;
-use Illuminate\Routing\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
 /**
