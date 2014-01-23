@@ -22,6 +22,10 @@ See the [Packagist website][3] for a list of other versions.
     ),
 ```
 
+## Migrations and seeds
+php artisan migrate --bench="domandtom/laravel-swagger"
+php artisan db:seed --class="DomAndTom\LaravelSwagger\LaravelSwaggerSeeder"
+
 ## Usage
 
 

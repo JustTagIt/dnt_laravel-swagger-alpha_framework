@@ -19,6 +19,7 @@
         "classmap": [
             "src/migrations",
             "src/models",
+            "src/seeds",
             "src/controllers",
             "src/controllers/demo"
         ],

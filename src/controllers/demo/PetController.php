@@ -6,6 +6,7 @@ use App;
 use Config;
 use URL;
 use Response;
+use Input;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
@@ -48,10 +49,14 @@ class PetController extends Controller
     {
         if (!is_numeric($petId)) {
             $response = Response::json(array('code' => 400, 'message' => 'Invalid ID supplied'), 400);
-        } elseif ($petId != 3) {
+        } 
+
+        $pet = Pet::with('category')->find($petId);
+
+        if (is_null($pet)) {
             $response = Response::json(array('code' => 404, 'message' => 'Pet not found'), 404);
         } else {
-            $response = Response::make(Pet::getPet3(), 200);
+            $response = Response::make($pet, 200);
         }
 
         $response->header('Content-Type', 'application/json');
@@ -84,7 +89,15 @@ class PetController extends Controller
      */
     function findByStatus() 
     {
-        $response = Response::make(Pet::getPets(), 200);
+        $status = Input::get('status');
+
+        if (!in_array($status, array('available','pending','sold'))) {
+            $response = Response::json(array('code' => 400, 'message' => 'Invalid status value'), 400);
+        }
+
+        $pets = Pet::with('category')->where('status', '=', $status)->get();
+
+        $response = Response::make($pets, 200);
         $response->header('Content-Type', 'application/json');
 
         return $response;
