@@ -46,7 +46,7 @@ class PetController extends Controller
      *   )
      * )
      */
-    public function getPetById($petId)
+    public function findById($petId)
     {
         if (!is_numeric($petId)) {
             return Response::json(array('code' => 400, 'message' => 'Invalid ID supplied'), 400);
@@ -103,7 +103,7 @@ class PetController extends Controller
      *   @SWG\Operation(
      *     method="GET",
      *     summary="Finds Pets by tags",
-     *     notes="Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.",
+     *     notes="Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3, tag4 for testing.",
      *     type="array",
      *     @SWG\Items("Pet"),
      *     nickname="findPetsByTags",
@@ -119,7 +119,7 @@ class PetController extends Controller
      *   )
      * )
      */
-    function findPetsByTags() 
+    function findByTags() 
     {
         $tagsInput = Input::get('tags');
         $tags = explode(",", $tagsInput);
