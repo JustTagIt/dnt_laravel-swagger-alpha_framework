@@ -19,7 +19,13 @@ class LaravelSwaggerSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('DomAndTom\LaravelSwagger\CategoryTableSeeder');
+		$this->command->info('Laravel Swagger Demo Categories seeded!');
+
+		$this->call('DomAndTom\LaravelSwagger\TagTableSeeder');
+		$this->command->info('Laravel Swagger Demo Tags seeded!');
+
 		$this->call('DomAndTom\LaravelSwagger\PetTableSeeder');
+		$this->command->info('Laravel Swagger Demo Pets seeded!');
 	}
 
 }

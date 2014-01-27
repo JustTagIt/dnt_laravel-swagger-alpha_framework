@@ -11,8 +11,6 @@ class CategoryTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('laravel_swagger_categories')->delete();
-
         Category::create(array(
             'id' => 1,
             'name' => 'Dogs'

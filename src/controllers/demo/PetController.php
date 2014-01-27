@@ -7,6 +7,7 @@ use Config;
 use URL;
 use Response;
 use Input;
+use DB;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
@@ -48,20 +49,16 @@ class PetController extends Controller
     public function getPetById($petId)
     {
         if (!is_numeric($petId)) {
-            $response = Response::json(array('code' => 400, 'message' => 'Invalid ID supplied'), 400);
+            return Response::json(array('code' => 400, 'message' => 'Invalid ID supplied'), 400);
         } 
 
-        $pet = Pet::with('category')->find($petId);
+        $pet = Pet::with('category', 'tags')->find($petId);
 
         if (is_null($pet)) {
-            $response = Response::json(array('code' => 404, 'message' => 'Pet not found'), 404);
-        } else {
-            $response = Response::make($pet, 200);
+            return Response::json(array('code' => 404, 'message' => 'Pet not found'), 404);
         }
 
-        $response->header('Content-Type', 'application/json');
-
-        return $response;
+        return Response::json($pet, 200);
     }
 
     /**
@@ -92,15 +89,12 @@ class PetController extends Controller
         $status = Input::get('status');
 
         if (!in_array($status, array('available','pending','sold'))) {
-            $response = Response::json(array('code' => 400, 'message' => 'Invalid status value'), 400);
+            return Response::json(array('code' => 400, 'message' => 'Invalid status value'), 400);
         }
 
-        $pets = Pet::with('category')->where('status', '=', $status)->get();
+        $pets = Pet::with('category', 'tags')->where('status', '=', $status)->get();
 
-        $response = Response::make($pets, 200);
-        $response->header('Content-Type', 'application/json');
-
-        return $response;
+        return Response::json($pets, 200);
     }
 
     /**
@@ -127,9 +121,20 @@ class PetController extends Controller
      */
     function findPetsByTags() 
     {
-        $response = Response::make(Pet::getPets(), 200);
-        $response->header('Content-Type', 'application/json');
+        $tagsInput = Input::get('tags');
+        $tags = explode(",", $tagsInput);
+        $tags = array_map('trim', $tags);
 
-        return $response;
+        if (empty($tags)) {
+            return Response::json(array('code' => 400, 'message' => 'Invalid status value'), 400);
+        }
+
+        $pets = Pet::with('category', 'tags')->whereHas('tags', function($q) use ($tags)
+        {
+            $q->whereIn('laravel_swagger_tags.name', $tags);
+
+        })->get();
+
+        return Response::json($pets, 200);
     }
 }
