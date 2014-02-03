@@ -5,11 +5,13 @@ return array(
         app_path().'/controllers',
         app_path().'/models'
     ),
-    'excludePath' => array(),
+    'excludedPath' => array(),
     'getResourceListOptions' => array(),
     'getResourceOptions' => array(
         'defaultBasePath' => ''
     ),
     'prefix' => '/api/docs',
-    'showDemo' => true
+    'showDemo' => true,
+    'cache' => true,
+    'cacheExpireAt' => 60
 );

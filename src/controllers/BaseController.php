@@ -3,6 +3,8 @@
 namespace DomAndTom\LaravelSwagger;
 
 use App;
+use Cache;
+use Carbon\Carbon;
 use Config;
 use URL;
 use Illuminate\Routing\Controller;
@@ -25,20 +27,20 @@ class BaseController extends Controller
      * Show all available Resources
      */
     public function resources()
-    {
-        $paths = Config::get('laravel-swagger::paths');
-
-        if (Config::get('laravel-swagger::showDemo') ) {
-            $paths[] = __DIR__.'/demo';
-            $paths[] = __DIR__.'/../models';
-        }
-        
-        $excludedPath = Config::get('laravel-swagger::excludePath');
+    {   
         $options = Config::get('laravel-swagger::getResourceListOptions');
 
-        $swagger = new Swagger($paths, $excludedPath);
+        $excludedPath = Config::get('laravel-swagger::excludedPath');
+        $swagger = new Swagger($this->getPaths(), $excludedPath);
 
-        $resourceList = $swagger->getResourceList($options);
+        if (Config::get('laravel-swagger::cache')) {
+            $resourceList = Cache::remember('resourceList', $this->getExpireAt(), function() use ($swagger, $options)
+            {
+                return $swagger->getResourceList($options);
+            });
+        } else {
+            $resourceList = $swagger->getResourceList($options);
+        }
 
         return $resourceList;
     }
@@ -48,6 +50,39 @@ class BaseController extends Controller
      */
     public function showResource($name)
     {
+        $options = Config::get('laravel-swagger::getResourceOptions');
+        $resourceName = "/" . str_replace("-", "/", $name);
+
+        $excludedPath = Config::get('laravel-swagger::excludedPath');
+        $swagger = new Swagger($this->getPaths(), $excludedPath);
+
+        if (Config::get('laravel-swagger::cache') && Cache::has('resource_'.$resourceName)) {
+            $resource = Cache::get('resource_'.$resourceName);
+        } else {
+            if (!in_array($resourceName, $swagger->getResourceNames())) {
+                App::abort(404, 'Resource not found');
+            }
+
+            // Pet demo uses the main laravel-swagger route.
+            if ($resourceName == '/petdemo') {
+                $options['defaultBasePath'] = route('swagger-index');
+            }
+
+            $resource = $swagger->getResource($resourceName, $options);
+        }
+
+        if (Config::get('laravel-swagger::cache') && !Cache::has('resource_'.$resourceName)) {
+            Cache::put('resource_'.$resourceName, $resource, $this->getExpireAt());
+        }
+
+        return $resource;
+    }
+
+    /** 
+     * Get Paths 
+     */
+    private function getPaths()
+    {
         $paths = Config::get('laravel-swagger::paths');
 
         if (Config::get('laravel-swagger::showDemo') ) {
@@ -55,23 +90,14 @@ class BaseController extends Controller
             $paths[] = __DIR__.'/../models';
         }
 
-        $excludedPath = Config::get('laravel-swagger::excludePath');
-        $options = Config::get('laravel-swagger::getResourceOptions');
+        return $paths;
+    }
 
-        $swagger = new Swagger($paths, $excludedPath);
-
-        $resourceName = "/" . str_replace("-", "/", $name);
-        if (!in_array($resourceName, $swagger->getResourceNames())) {
-            App::abort(404, 'Resource not found');
-        }
-
-        // Pet demo uses the main laravel-swagger route.
-        if ($resourceName == '/petdemo') {
-            $options['defaultBasePath'] = route('swagger-index');
-        }
-
-        $resource = $swagger->getResource($resourceName, $options);
-
-        return $resource;
+    /** 
+     * Get expiration time for cache
+     */
+    private function getExpireAt()
+    {
+        return Carbon::now()->addMinutes(Config::get('laravel-swagger::cacheExpireAt'));
     }
 }
