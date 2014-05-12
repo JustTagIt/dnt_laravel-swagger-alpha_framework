@@ -16,4 +16,4 @@ THIS IS AN ALPHA RELEASE, NOT INTENDED FOR PRODUCTION YET.
 * Initial release
 
 ## License
-MIT License.
+Apache 2.0 License.
