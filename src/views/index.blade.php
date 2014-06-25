@@ -8,19 +8,19 @@
     <link href='{{ URL::asset("packages/domandtom/laravel-swagger/css/reset.css") }}' media='print' rel='stylesheet' type='text/css'/>
     <link href='{{ URL::asset("packages/domandtom/laravel-swagger/css/screen.css") }}' media='print' rel='stylesheet' type='text/css'/>
     <script type="text/javascript" src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/shred.bundle.js') }}"></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery-1.8.0.min.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery.slideto.min.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery.wiggle.min.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery.ba-bbq.min.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/handlebars-1.0.0.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/underscore-min.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/backbone-min.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/swagger.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/swagger-ui.js') }}/" type='text/javascript'></script>
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/highlight.7.3.pack.js') }}/" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery-1.8.0.min.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery.slideto.min.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery.wiggle.min.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/jquery.ba-bbq.min.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/handlebars-1.0.0.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/underscore-min.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/backbone-min.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/swagger.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/swagger-ui.js') }}" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/highlight.7.3.pack.js') }}" type='text/javascript'></script>
 
     <!-- enabling this will enable oauth2 implicit scope support -->
-    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/swagger-oauth.js') }}/" type='text/javascript'></script>
+    <script src="{{ URL::asset('packages/domandtom/laravel-swagger/lib/swagger-oauth.js') }}" type='text/javascript'></script>
 
     <script type="text/javascript">
         $(function () {
