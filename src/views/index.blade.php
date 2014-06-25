@@ -32,6 +32,8 @@
                 onComplete: function(swaggerApi, swaggerUi){
                     log("Loaded SwaggerUI");
 
+                    $('.response_throbber').attr('src', '{{ URL::asset("packages/domandtom/laravel-swagger/images/throbber.gif") }}');
+
                     if(typeof initOAuth == "function") {
                         /*
                          initOAuth({
