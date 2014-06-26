@@ -48,6 +48,5 @@
         "psr-0": {
             "DomAndTom\\LaravelSwagger": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
