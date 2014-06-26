@@ -12,7 +12,7 @@ class SwaggerAssetManager {
         $composer = $event->getComposer();
 
         $package_root = dirname(__FILE__).'/../../../';
-        $swagger_ui_path = $package_root.'/vendor/wordnik/swagger-ui/dist';
+        $swagger_ui_path = $package_root.'/vendor/domandtom/swagger-ui/dist';
         $public_path = $package_root.'/public';
 
         $srcDir = $swagger_ui_path;

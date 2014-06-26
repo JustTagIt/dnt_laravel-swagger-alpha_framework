@@ -10,25 +10,11 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "wordnik/swagger-ui",
-                "version": "2.0.17",
-                "source": {
-                    "url": "https://github.com/wordnik/swagger-ui.git",
-                    "type": "git",
-                    "reference": "v2.0.17"
-                }
-            }
-        }
-    ],
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": ">=4.0",
         "zircote/swagger-php": "0.9.4",
-        "wordnik/swagger-ui": "2.0.17"
+        "domandtom/swagger-ui": "v2.0.17.0"
     },
     "scripts": {
         "post-install-cmd": [
